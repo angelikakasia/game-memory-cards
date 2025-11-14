@@ -1,83 +1,157 @@
-I My WHY behind the choice of the game ----------------------------------------------
+The correct Repo: 
 
-    I am building a Memory Matching Game. This game includes 36 total cards arranged in a square grid, with 18 matching pairs. Each pair shares the matching symbol and background color. The player flips two cards at a time and attempts to find all matches.
+https://github.com/angelikakasia/game-memory-cards 
 
-Why I chose this game:
-    a) I want to practice improving my focus and concentration.
-    b) Out of all the suggested game options, this one seemed the most fun and interesting to me.
-    c) I liked the idea of building something visual and interactive with clear rules.
+ 
+I My WHY behind the choice of the game ----------------------------
+I am building a Memory Matching Game. This game includes 36 total cards arranged in a square grid, with 18 matching pairs.
+Each pair shares the matching symbol and background color.
+The player flips two cards at a time and attempts to find all matches.
+
+Why I chose this game:  
+
+ a) I want to practice improving my focus and concentration.  
+
+ b) Out of all the suggested game options, this one seemed the most fun and interesting to me.  
+
+ c) I liked the idea of building something visual and interactive with clear rules.
 
 
-II Pseudocode -----------------------------------------------------------------------
+II Pseudocode------------------------------------------
 
-1 Game Setup
 
-    a) Create 18 unique symbols that will represent each pair.
-    b) Duplicate the 18 symbols so there are 36 cards total.
-    c) Assign each pair a matching background color.
-    d) Shuffle all 36 cards and arrange them face-down in a square grid.
+1 Game Setup    
+a) Create 18 unique symbols that will represent each pair.  
 
-2 When the player clicks a card
+b) Duplicate the 18 symbols so there are 36 cards total.    
 
-    a) Check if the card is already matched or already face-up; if yes, ignore the click.
-    b) If it’s a valid card, flip it over to reveal the symbol and color.
-    c) Store the flipped card in a temporary list so I can check it later.
+c) Assign each pair a matching background color.    d) Shuffle all 36 cards and arrange them face-down in a square grid.
 
-3 When two cards are flipped
 
-    a) Pause the game briefly so the player cannot flip more cards immediately.
-    b) Compare the two flipped cards by checking their symbol and color.
-    c) If they match:
+2 When the player clicks a card    
+a) Check if the card is already matched or already face-up; if yes, ignore the click.    
 
-        - Mark both cards as “matched” so they stay face-up.
-        -Increase the number of completed pairs.
-        -If all 18 pairs are matched, display a “You Won” message.
+b) If it’s a valid card, flip it over to reveal the symbol and color.    
 
-    d) If they do not match:
-        -Wait about one second.
-        -Flip both cards back face-down again.
-        -Allow the player to continue playing.
+c) Store the flipped card in a temporary list so I can check it later.
 
-4 Restarting the game
 
-    a) Set the matched-pairs count back to zero.
-    b) Flip all cards face-down.
-    c) Shuffle the cards again.
-    d) Re-render the board so the player can start a new game.
+3  When two cards are flipped    
+a) Pause the game briefly so the player cannot flip more cards immediately.    
 
-III Additional Planning Requirements-------------------------------------------------
+b) Compare the two flipped cards by checking their symbol and color.    
 
-1 Game board layout planning
+c) If they match:        
+- Mark both cards as “matched” so they stay face-up.      
 
-    a) The game board will be a 6 × 6 grid so all 36 cards fit evenly.
-    b) Each card will be visually identical when face-down.
-    c) When flipped, each card will show:
+ -Increase the number of completed pairs.        
 
-        -a symbol (to identify the pair)
-        -a background color (helps the player visually match pairs)
+-If all 18 pairs are matched, display a “You Won” message.    
 
-2 Game logic
 
-    a) Cards must temporarily lock when two are flipped, so the player cannot flip more before the match check.
-    b) The game needs to keep track of the state:
+d) If they do not match:       
 
-        -which cards are flipped
-        -which cards are matched
-        -how many pairs remain
+-Wait about one second.        
 
-    c) There must be smooth transitions between flipping, matching, and resetting.
-    d) A reset feature must fully restart the game state and reshuffle the cards.
+-Flip both cards back face-down again.        
 
-3 Planned eventListeners and game functions
+-Allow the player to continue playing.
 
-    a) Event listener for clicking a card to flip it.
-    b) Event listener for restarting the game.
-    c) Functions to:
 
-        -initialize the game
-        -shuffle cards
-        -render the board
-        -handle flip logic
-        -check for matches
-        -update the game state
-        -display win message# game-memory-cards
+4 Restarting the game    
+
+
+a) Set the matched-pairs count back to zero.    
+
+b) Flip all cards face-down.    
+
+c) Shuffle the cards again.    
+
+d) Re-render the board so the player can start a new game.
+ 
+III Additional Planning Requirements---------------------------
+
+
+1 Game board layout planning    
+a) The game board will be a 6 × 6 grid so all 36 cards fit evenly.    
+
+b) Each card will be visually identical when face-down.    
+
+c) When flipped, each card will show:        
+-a symbol (to identify the pair)        
+
+-a background color (helps the player visually match pairs)
+
+
+2 Game logic   
+
+
+ a) Cards must temporarily lock when two are flipped, so the player cannot flip more before the match check.    
+
+b) The game needs to keep track of the state:        -which cards are flipped        -which cards are matched        -how many pairs remain    
+c) There must be smooth transitions between flipping, matching, and resetting.    
+
+d) A reset feature must fully restart the game state and reshuffle the cards.
+
+
+3 Planned eventListeners and game functions    
+a) Event listener for clicking a card to flip it.    
+
+b) Event listener for restarting the game.    
+
+c) Functions to:        
+
+-initialize the game        
+
+-shuffle cards        
+
+-render the board        
+
+-handle flip logic      
+
+-check for matches       
+
+-update the game state        
+
+-display win message
+ 
+IV Variables and data types 
+
+
+1. List of all cards
+Data type: array of objects
+Purpose: stores every card’s information, including its symbol, color, and pair ID.
+
+
+2. Shuffled game board
+Data type: array
+Purpose: represents the randomized order of cards after shuffling
+
+3. Flipped cards
+Data type: array (max length 2)
+Purpose: temporarily holds the two cards the player has currently flipped to compare them.
+
+
+4. Matched cards
+Data type: number
+Purpose: tracks how many pairs have been successfully matched.
+
+
+5. Game lock state
+Data type: boolean (true/false)
+Purpose: prevents the player from clicking more cards while two flipped cards are being checked.
+
+
+6. Card elements from the DOM
+Data type: cached element references
+Purpose: makes it faster and easier to update the visual board, flip cards, and render changes.
+
+
+7. Restart button reference
+Data type: element reference
+Purpose: allows the game to reset when the player clicks the reset button.
+
+
+8. Game status
+Data type: string or boolean
+Purpose: indicates whether the game is “in progress,” “won,” or “reset.”
