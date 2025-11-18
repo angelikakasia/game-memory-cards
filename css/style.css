@@ -46,3 +46,40 @@ h1 {
     font-size: 0.9em;
     margin-bottom: 5px;
 }*/
+/* Game Board Layout */
+.board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);  /* 6 columns */
+  grid-template-rows: repeat(6, 1fr);     /* 6 rows */
+  gap: 10px;                               /* spacing */
+  width: 600px;
+  margin: 40px auto;                       /* center board */
+}
+
+/* Card Styling */
+.card {
+  width: 100%;
+  height: 100px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;          /* hidden when face-down */
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Flipped Cards */
+.card.flipped {
+  background-color: #4b94ff;
+  color: white;                /* show text when flipped */
+}
+
+/* Matched Cards */
+.card.matched {
+  background-color: #28a745;
+  color: white;
+  cursor: default;
+}
