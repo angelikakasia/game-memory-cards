@@ -25,12 +25,26 @@
 
                 <div class="stat">
                      <div class="stat-label">Matches</div>
-                     <div class="stat-label">0</div>
-                </div>
+                     <div class="stat-label">0/18</div>
 
+                </div>
             </div>
         </div>
+
+
+        <div class="game-board" id="gameBoard"></div>
+        <div class="controls"></div>
+            <button class="btn" onclick="newGame()">
+                <i class="fas fa-redo"></i> New Game 
+            </button>
     </div>
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> You Won! <i class="fas fa-trophy"></i> </h2>
+        </div>
+    </div>
+
+
     <script src="game.js"></script>
     
 </body>
