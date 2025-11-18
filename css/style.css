@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", "Arial", sans-serif;
+    background: #000000;
+    color: rgb(206, 224, 140);
+    padding: 20px;
+    min-height: 100vh;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.header{
+    text-align: center;
+    background: rgb(31, 31, 32);
+    border-radius: 6px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 0 #454343
+}
