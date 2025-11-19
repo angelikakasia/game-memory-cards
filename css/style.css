@@ -125,6 +125,7 @@ h4 {
         #f3e9e7 10%,     
         #dfb3b3 50%,    
         #88b50f 100% ); 
+    overflow:hidden;
 }
 /*
 /* Flipped Cards 

@@ -13,7 +13,7 @@ const cardData = [
   { term: "DLP", meaning: "prevents data leaks" },
   { term: "Zero Trust", meaning: "never trust, verify" },
   { term: "Threat Hunt", meaning: "proactive search threats" },
-  { term: "IOC", meaning: "compromise indicator" },
+  { term: "IOC", meaning: "compro- mise indicator" },
   { term: "TTPs", meaning: "attacker behavior patterns" },
   { term: "Playbook", meaning: "fixed response steps" },
   { term: "Contain- ment", meaning: "stop attack spread" },
@@ -82,7 +82,7 @@ function renderBoard() {
     div.dataset.index = index;
 
     div.innerHTML =`
-    <div class= "card-front"></div> 
+    <div class= "card-front"><i class="fas fa-spider"</i></div> 
     <div class= "card-back">${card.display}</div>`; 
     div.addEventListener("click", flipCard);
     board.appendChild(div);
