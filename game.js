@@ -202,6 +202,7 @@ function newGame() {
   // Shuffle and rebuild
   deck = deck.sort(() => Math.random() - 0.5);
   renderBoard();
+  showInstructions(); // My POPUP
 }
 
 // =======================
@@ -210,3 +211,12 @@ function newGame() {
 
 deck = deck.sort(() => Math.random() - 0.5);
 renderBoard();
+
+// INSTRUCTIONS SHOW ON LOAD
+function showInstructions(){
+    document.getElementById("instructionsModal").style.display = 'flex';
+}
+
+function closeInstructions() {
+    document.getElementById("instructionsModal").style.display = "none";
+}

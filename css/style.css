@@ -219,3 +219,12 @@ h4 {
         font-size: 2.5em;
     }
 }
+
+#instructionsModal{
+    display: none;
+}
+#instructionsModal .modal-content {
+    max-width:400px;
+    color: rgb(2, 2, 2);
+    line-height: 1.5em;
+}
