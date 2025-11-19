@@ -64,6 +64,7 @@ h4 {
   width: 600px;
   margin: 40px auto;
   perspective: 1000px;
+  overflow: visible;
 }
 
 .card {
@@ -76,6 +77,7 @@ h4 {
         #485c14 100% ); 
   aspect-ratio: 1;
   position: relative;
+  
   transform-style: preserve-3d;
   border-radius: 6px;
   display: flex;
@@ -87,9 +89,10 @@ h4 {
   transition: all 0.14s ease;
 }
 .card:hover{
-    transform:scale(1.13);
+    transform:scale(1.12);
     border-radius: 20px;
-    border: 2.5px solid rgb(175, 221, 48);
+    border: 1.5px solid rgb(175, 221, 48);
+    z-index: 10;
 }
 .card-front i {
     color:rgb(45, 51, 4);
@@ -134,17 +137,85 @@ h4 {
         #88b50f 100% ); 
     overflow:hidden;
 }
-/*
-/* Flipped Cards 
-.card.flipped {
-  background-color: #4b94ff;
-  color: white;
+.controls{
+    text-align: center;
 }
 
-/* Matched Cards 
-.card.matched {
-  background-color: #28a745;
-  color: white;
-  cursor: default;
+.btn {
+    display: block;
+    background: radial-gradient(circle, 
+        #ffffff 2%,
+        #e1f178 10%,     
+        #cbab1b 50%,    
+        #101502 100% );
+    color: rgb(2, 2, 2);
+    border: 2px solid rgb(68, 67, 61);
+    padding: 15px 30px;
+    border-radius: 13px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    justify-content: center;
+    margin: 20px auto;
+
 }
- */
+.btn:hover {
+     transform:scale(1.13);
+    border-radius: 20px;
+    border: 1.5px solid rgb(68, 69, 65);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.modal.show{
+    display: flex;
+}
+.modal-content {
+    background: rgb(32, 40, 24);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+     box-shadow: 0 2px 0 #454343;
+     animation: bounce 0.3s;
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: sca;e(1);
+    }
+    50% {
+        transform: scale (1.1);
+    }
+}
+.modal-content h2 {
+    font-size: 1.4em;
+    padding: 10px;
+}
+@media (max-width: 768px){
+    .game-board {
+        grid-template-columns: repeat (3, 1fr);
+    }
+    h1 {
+        font-size: 2em;
+    }
+}
+@media (max-width: 480px){
+    .game-board {
+        grid-template-columns: repeat (2, 1fr);
+        gap: 10px;
+    }
+    h1 {
+        font-size: 1.6em;
+    }
+    .card-front{
+        font-size: 2.5em;
+    }
+}
