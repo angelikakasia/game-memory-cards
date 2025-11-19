@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/* add instructions */
 body {
     font-family: "Lato", "Arial", sans-serif;
     background: #000000;
@@ -63,7 +63,10 @@ h1 {
 .card {
   width: 100%;
   height: 100px;
-  background-color: #69900c;
+  background: radial-gradient(circle, 
+        #dcefb2 0%,     /* light center */
+        #a0bd44 50%,    /* medium */
+        #6f8c1f 100% ); /* darker edges */
   aspect-ratio: 1;
   position: relative;
   transform-style: preserve-3d;
@@ -77,9 +80,9 @@ h1 {
   transition: all 0.3s ease;
 }
 .card:hover{
-    transform:scale(1.03);
-    border-radius: 10px;
-    border: 1.5px solid rgb(186, 221, 73);
+    transform:scale(1.13);
+    border-radius: 20px;
+    border: 2.5px solid rgb(168, 247, 32);
 }
 .card.flipped{
     transform: rotateY(180deg);
@@ -98,7 +101,10 @@ h1 {
     align-items: center;
 }
 .card-front{
-
+    background: white;
+    color:#bb3086;
+    font-size: 3.5em;
+    box-shadow: 06px 0 #c2b2b2
 }
 .card-back{
 
