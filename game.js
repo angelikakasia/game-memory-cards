@@ -16,7 +16,7 @@ const cardData = [
   { term: "IOC", meaning: "compromise indicator" },
   { term: "TTPs", meaning: "attacker behavior patterns" },
   { term: "Playbook", meaning: "fixed response steps" },
-  { term: "Containment", meaning: "stop attack spread" },
+  { term: "Contain- ment", meaning: "stop attack spread" },
   { term: "Pivoting", meaning: "lateral movement" },
   { term: "Forensics", meaning: "evidence collection" },
   { term: "CloudTrail", meaning: "logs cloud activity" },
@@ -77,14 +77,18 @@ function renderBoard() {
 
   deck.forEach((card, index) => {
     const div = document.createElement("div");
+
     div.classList.add("card");
     div.dataset.index = index;
 
+    div.innerHTML =`
+    <div class= "card-front"></div> 
+    <div class= "card-back">${card.display}</div>`; 
     div.addEventListener("click", flipCard);
-
     board.appendChild(div);
   });
 }
+
 
 // =======================
 // FLIP CARD
@@ -101,8 +105,7 @@ function flipCard() {
   if (this.classList.contains("flipped")) return;
 
   this.classList.add("flipped");
-  this.textContent = card.display;
-  this.style.color = "white";
+
 
   flippedCards.push({ element: this, card });
 
@@ -117,6 +120,7 @@ function flipCard() {
 
 function checkMatch() {
   lockBoard = true;
+  console.log("<i>It's a match!<i>")
 
   const [first, second] = flippedCards;
 
@@ -141,11 +145,10 @@ function checkMatch() {
     setTimeout(() => {
       first.element.classList.remove("flipped");
       second.element.classList.remove("flipped");
-      first.element.textContent = "";
-      second.element.textContent = "";
+     
       flippedCards = [];
       lockBoard = false;
-    }, 900);
+    }, 1000);
   }
 }
 
