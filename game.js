@@ -65,6 +65,12 @@ function startTimer() {
     document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent =
       `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   }, 1000);
+  if (seconds >601){
+    lockBoard = true;
+    clearInterval(timerInterval);
+    alert(" Time's up! You reached the 10-minute limit!");
+    return;
+  }
 }
 
 // =======================
@@ -82,7 +88,7 @@ function renderBoard() {
     div.dataset.index = index;
 
     div.innerHTML =`
-    <div class= "card-front"><i class="fas fa-spider"</i></div> 
+    <div class= "card-front"><i class="fas fa-spider"></i></div> 
     <div class= "card-back">${card.display}</div>`; 
     div.addEventListener("click", flipCard);
     board.appendChild(div);
@@ -125,6 +131,12 @@ function checkMatch() {
   const [first, second] = flippedCards;
 
   moves++;
+  if (moves > 29) {
+    lockBoard = true;
+    clearInterval(timerInterval);
+    alert("Game Over: You reached maximum move limit!");
+    return;
+  }
   document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent = moves;
 
   if (first.card.id === second.card.id) {
