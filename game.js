@@ -153,7 +153,7 @@ function checkMatch() {
     return;
   }
 
-  // Update move counter
+
   document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
     `${moves}/${MAX_MOVES}`;
 

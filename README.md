@@ -149,3 +149,11 @@ The game contains 36 total cards arranged in a 6×6 grid, which form **18 matchi
 - Add themes and animations  
 - Add accessibility modes  
 
+---
+
+## Attributions
+Font Awesome Free 6.4.0  
+Icons used under the Font Awesome Free License.  
+CDN Source: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  
+Font Awesome Website: https://fontawesome.com  
+
