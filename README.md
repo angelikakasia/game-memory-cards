@@ -1,16 +1,38 @@
 # Cybersecurity Terms – Memory Match Game
+---
+## START
+
 
 ![Screenshot of Game](1.png) 
+
+
+---
+## PLAY
+
+
 ![Screenshot of Game](2.png)
+
+
+---
+## END
+
+
+![Screenshot of Game](3.png)
+
+
+---
 
 
 A browser-based matching game built with HTML, CSS, and JavaScript.
 
-🎮 **Live Game:**  
+**Live Game:**  
 https://angelikakasia.github.io/game-memory-cards/
 
-💻 **GitHub Repo:**  
+**GitHub Repo:**  
 https://github.com/angelikakasia/game-memory-cards
+
+**Planning Folder:**
+https://github.com/angelikakasia/game-memory-cards/tree/main/planning
 
 ---
 
@@ -33,7 +55,7 @@ The game contains 36 total cards arranged in a 6×6 grid, which form **18 matchi
 ## II. Pseudocode
 
 ### 1. Game Setup
-- Create 18 matching Paris: a term and a meaning  
+- Create 18 matching pairs: a term and a meaning  
 - Duplicate them → 36 total cards  
 - Assign each pair a matching background color  
 - Shuffle the cards  
