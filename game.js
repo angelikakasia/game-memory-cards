@@ -55,7 +55,7 @@ let matchedPairs = 0;
 let lockBoard = false;
 
 let moves = 0;
-const MAX_MOVES = 40;   // <<<<<< FIXED
+const MAX_MOVES = 40;   
 
 let timerInterval = null;
 let seconds = 0;

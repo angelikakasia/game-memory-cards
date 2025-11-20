@@ -1,4 +1,8 @@
-# \*\*Cybersecurity Terms – Memory Match Game\*\*
+# Cybersecurity Terms – Memory Match Game
+
+![Screenshot of Game](1.png) 
+![Screenshot of Game](2.png)
+
 
 A browser-based matching game built with HTML, CSS, and JavaScript.
 
@@ -10,23 +14,23 @@ https://github.com/angelikakasia/game-memory-cards
 
 ---
 
-## I. \*\*My WHY Behind the Game\*\*
+## I. My WHY Behind the Game
 
 I created a Cybersecurity Terms Memory Match Game to improve my focus and reinforce cybersecurity vocabulary.
 
-The game contains \*\*36 total cards\*\* arranged in a 6×6 grid, which form \*\*18 matching pairs\*\* (each pair = a term + its meaning).
+The game contains 36 total cards arranged in a 6×6 grid, which form **18 matching pairs** (each pair = a term + its meaning).
 
-### Gameplay Overview (Raw Text)
-- Match each \*\*cybersecurity term\*\* with its correct meaning  
+### Gameplay Overview 
+- Match each **cybersecurity term** with its correct meaning  
 - Click two cards to flip them  
 - If they match, they stay revealed  
-- You must match \*\*18 pairs\*\* to win  
-- You have \*\*40 moves\*\* and \*\*10 minutes\*\*  
-- Press \*\*New Game\*\* to restart anytime
+- You must match **18 pairs** to win  
+- You have **40 moves** and **10 minutes**  
+- Press **New Game** to restart anytime
 
 ---
 
-## II. \*\*Pseudocode\*\*
+## II. Pseudocode
 
 ### 1. Game Setup
 - Create 18 matching Paris: a term and a meaning  
@@ -61,7 +65,7 @@ The game contains \*\*36 total cards\*\* arranged in a 6×6 grid, which form \*\
 
 ---
 
-## III. \*\*Variables and Data Types\*\*
+## III. **Variables and Data Types**
 
 1. List of all cards  
    Type: array of objects  
@@ -97,7 +101,7 @@ The game contains \*\*36 total cards\*\* arranged in a 6×6 grid, which form \*\
 
 ---
 
-## IV. \*\*Additional Planning Requirements\*\*
+## IV. **Additional Planning Requirements**
 
 ### 1. Game Board Layout
 - 6×6 grid  
@@ -140,6 +144,7 @@ The game contains \*\*36 total cards\*\* arranged in a 6×6 grid, which form \*\
 ## Next Steps
 - Add sound effects  
 - Add difficulty levels  
+- Add different games with different topics  
 - Add scoreboard  
 - Add themes and animations  
 - Add accessibility modes  
