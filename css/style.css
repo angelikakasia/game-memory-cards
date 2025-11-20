@@ -8,7 +8,7 @@ body {
     font-family: "Lato", "Arial", sans-serif;
     background: #000000;
     color: rgb(220, 199, 63);
-    padding: 20px;
+    padding: 30px;
     min-height: 100vh;
 }
 
@@ -21,6 +21,7 @@ body {
     text-align: center;
     background: rgb(31, 31, 32);
     border-radius: 6px;
+    padding: 25px;
     margin-bottom: 30px;
     box-shadow: 0 2px 0 #454343;
 }
@@ -66,15 +67,21 @@ h4 {
   perspective: 1000px;
   overflow: visible;
 }
+.card-front,
+.card-back {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
 
 .card {
   width: 100%;
   height: 100px;
-   background: radial-gradient(circle, 
+  background: none;
+  /* background: radial-gradient(circle, 
         #ffffff 2%,
         #e4fcb3 10%,     
         #97b438 50%,    
-        #485c14 100% ); 
+        #485c14 100% ); */
   aspect-ratio: 1;
   position: relative;
   
@@ -128,13 +135,13 @@ h4 {
   
 }
 .card-back{
-    background: white;
-    transform: rotateY(180deg);
+  /*  background: white;
     background: radial-gradient(circle, 
         #ffffff 2%,
         #f3e9e7 10%,     
         #dfb3b3 50%,    
-        #88b50f 100% ); 
+        #88b50f 100% );  */
+    transform: rotateY(180deg);
     overflow:hidden;
 }
 .controls{
@@ -175,12 +182,14 @@ h4 {
     height: 100%;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
 }
 .modal.show{
     display: flex;
 }
 .modal-content {
-    background: rgb(32, 40, 24);
+    background: rgb(186, 255, 49);
     padding: 30px;
     border-radius: 10px;
     text-align: center;
@@ -189,19 +198,23 @@ h4 {
 }
 @keyframes bounce {
     0%, 100% {
-        transform: sca;e(1);
+        transform: scale(1);
     }
     50% {
-        transform: scale (1.1);
+        transform: scale(1.1);
     }
 }
 .modal-content h2 {
     font-size: 1.4em;
     padding: 10px;
 }
+#winModal .modal-content h2,
+#winModal .modal-content p {
+    color: black !important;
+}
 @media (max-width: 768px){
     .game-board {
-        grid-template-columns: repeat (3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     h1 {
         font-size: 2em;
@@ -209,7 +222,7 @@ h4 {
 }
 @media (max-width: 480px){
     .game-board {
-        grid-template-columns: repeat (2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
     h1 {
@@ -220,11 +233,22 @@ h4 {
     }
 }
 
-#instructionsModal{
-    display: none;
-}
+
 #instructionsModal .modal-content {
     max-width:400px;
     color: rgb(2, 2, 2);
     line-height: 1.5em;
 }
+#winModal{
+    display: none;
+    
+}
+#winModal.showing {
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+

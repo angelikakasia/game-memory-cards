@@ -3,28 +3,29 @@
 // =======================
 
 const cardData = [
-  { term: "IAM", meaning: "access control system" },
-  { term: "WAF", meaning: "filters web attacks" },
-  { term: "SIEM", meaning: "security event monitor" },
-  { term: "SOC", meaning: "security operations team" },
-  { term: "EDR", meaning: "endpoint threat detection" },
-  { term: "SOAR", meaning: "automated response actions" },
-  { term: "CSPM", meaning: "cloud config scanning" },
-  { term: "DLP", meaning: "prevents data leaks" },
-  { term: "Zero Trust", meaning: "never trust, verify" },
-  { term: "Threat Hunt", meaning: "proactive search threats" },
-  { term: "IOC", meaning: "compro- mise indicator" },
-  { term: "TTPs", meaning: "attacker behavior patterns" },
-  { term: "Playbook", meaning: "fixed response steps" },
-  { term: "Contain- ment", meaning: "stop attack spread" },
-  { term: "Pivoting", meaning: "lateral movement" },
-  { term: "Forensics", meaning: "evidence collection" },
-  { term: "CloudTrail", meaning: "logs cloud activity" },
-  { term: "Guardrail", meaning: "prevents unsafe configs" }
+  { term: "IAM", meaning: "access control system", color: "#f55585ff" },
+  { term: "WAF", meaning: "filters web attacks", color: "#509ef6ff" },
+  { term: "SIEM", meaning: "security event monitor", color: "#2ffcccff" },
+  { term: "SOC", meaning: "security operations team", color: "#d8c602ff" },
+  { term: "EDR", meaning: "endpoint threat detection", color: "#ecf244ff" },
+  { term: "SOAR", meaning: "automated response actions", color: "#c7f359ff" },
+  { term: "CSPM", meaning: "cloud config scanning", color: "#26b58aff" },
+  { term: "DLP", meaning: "prevents data leaks", color: "#bb69faff" },
+  { term: "Zero Trust", meaning: "never trust, verify", color: "#77f01aff" },
+  { term: "Threat Hunt", meaning: "proactive search threats", color: "#ef421bff" },
+  { term: "IOC", meaning: "compro- mise indicator", color: "#f4208eff" },
+  { term: "TTPs", meaning: "attacker behavior patterns", color: "#565c55ff" },
+  { term: "Playbook", meaning: "fixed response steps", color: "#f8619dff" },
+  { term: "Contain- ment", meaning: "stop attack spread", color: "#43f64fff" },
+  { term: "Pivoting", meaning: "lateral movement", color: "#f69c48ff" },
+  { term: "Forensics", meaning: "evidence collection", color: "#d5bff3ff" },
+  { term: "CloudTrail", meaning: "logs cloud activity", color: "#2c4af7ff" },
+  { term: "Guardrail", meaning: "prevents unsafe configs", color: "#07a4ecff" }
 ];
 
+
 // =======================
-// BUILD 36-CARD DECK
+// BUILD 40-CARD DECK
 // =======================
 
 let deck = [];
@@ -33,24 +34,33 @@ cardData.forEach(item => {
   deck.push({
     id: item.term,
     display: item.term,
-    type: "term"
+    type: "term",
+    color:item.color
   });
 
   deck.push({
     id: item.term,
     display: item.meaning,
-    type: "meaning"
+    type: "meaning",
+    color: item.color
   });
 });
 
-// Game state
+// =======================
+// GAME STATE
+// =======================
+
 let flippedCards = [];
 let matchedPairs = 0;
 let lockBoard = false;
+
 let moves = 0;
+const MAX_MOVES = 40;   // <<<<<< FIXED
+
 let timerInterval = null;
 let seconds = 0;
 let gameStarted = false;
+
 
 // =======================
 // TIMER
@@ -64,14 +74,17 @@ function startTimer() {
     seconds++;
     document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent =
       `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+
+    // Time limit
+    if (seconds > 600) {
+      lockBoard = true;
+      clearInterval(timerInterval);
+      alert("Time's up! You reached the 10-minute limit!");
+    }
+
   }, 1000);
-  if (seconds >601){
-    lockBoard = true;
-    clearInterval(timerInterval);
-    alert(" Time's up! You reached the 10-minute limit!");
-    return;
-  }
 }
+
 
 // =======================
 // RENDER 6x6 GRID
@@ -87,9 +100,11 @@ function renderBoard() {
     div.classList.add("card");
     div.dataset.index = index;
 
-    div.innerHTML =`
-    <div class= "card-front"><i class="fas fa-spider"></i></div> 
-    <div class= "card-back">${card.display}</div>`; 
+    div.innerHTML = `
+      <div class="card-front"><i class="fas fa-spider"></i></div>
+      <div class="card-back" style="background:${card.color}">${card.display}</div>
+    `;
+
     div.addEventListener("click", flipCard);
     board.appendChild(div);
   });
@@ -112,7 +127,6 @@ function flipCard() {
 
   this.classList.add("flipped");
 
-
   flippedCards.push({ element: this, card });
 
   if (flippedCards.length === 2) {
@@ -120,24 +134,28 @@ function flipCard() {
   }
 }
 
+
 // =======================
 // CHECK MATCH
 // =======================
 
 function checkMatch() {
   lockBoard = true;
-  console.log("<i>It's a match!<i>")
 
   const [first, second] = flippedCards;
 
   moves++;
-  if (moves > 29) {
+
+  if (moves > MAX_MOVES) {
     lockBoard = true;
     clearInterval(timerInterval);
     alert("Game Over: You reached maximum move limit!");
     return;
   }
-  document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent = moves;
+
+  // Update move counter
+  document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
+    `${moves}/${MAX_MOVES}`;
 
   if (first.card.id === second.card.id) {
     first.element.classList.add("matched");
@@ -157,12 +175,13 @@ function checkMatch() {
     setTimeout(() => {
       first.element.classList.remove("flipped");
       second.element.classList.remove("flipped");
-     
+
       flippedCards = [];
       lockBoard = false;
-    }, 1000);
+    }, 900);
   }
 }
+
 
 // =======================
 // SHOW WIN MODAL
@@ -175,8 +194,11 @@ function showWinModal() {
   document.getElementById("finalTime").textContent =
     `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
-  document.getElementById("winModal").style.display = "flex";
+  const modal = document.getElementById("winModal");
+  modal.style.display = "flex";
+  modal.classList.add("showing");
 }
+
 
 // =======================
 // NEW GAME RESET
@@ -192,31 +214,37 @@ function newGame() {
   flippedCards = [];
   lockBoard = false;
 
-  document.getElementById("winModal").style.display = "none";
-
   // Reset UI
-  document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent = "0";
+  document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
+    `0/${MAX_MOVES}`;
+
   document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent = "0:00";
   document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent = "0/18";
 
-  // Shuffle and rebuild
+  // Shuffle & render
   deck = deck.sort(() => Math.random() - 0.5);
   renderBoard();
-  showInstructions(); // My POPUP
 }
 
+
 // =======================
-// START GAME ON LOAD
+// SHOW INSTRUCTIONS ON LOAD
+// =======================
+
+function showInstructions() {
+  document.getElementById("instructionsModal").classList.add("show");
+}
+
+function closeInstructions() {
+  document.getElementById("instructionsModal").classList.remove("show");
+}
+
+
+// =======================
+// START GAME
 // =======================
 
 deck = deck.sort(() => Math.random() - 0.5);
 renderBoard();
-
-// INSTRUCTIONS SHOW ON LOAD
-function showInstructions(){
-    document.getElementById("instructionsModal").style.display = 'flex';
-}
-
-function closeInstructions() {
-    document.getElementById("instructionsModal").style.display = "none";
-}
+showInstructions();
+document.getElementById("winModal").style.display = "none";

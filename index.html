@@ -11,8 +11,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><i class="fas fa-spider"></i> Cyersecurity Terms <i class="fas fa-spider"></i> </h1>
-             <h4><i class="fas fa-bug"></i> Memory Match  <i class="fas fa-bug"></i> </h1>
+            <h1><i class="fas fa-spider"></i> Cybersecurity Terms <i class="fas fa-spider"></i> </h1>
+             <h4><i class="fas fa-bug"></i> Memory Match  <i class="fas fa-bug"></i> </h4>
             
 
             <div class="stats">
@@ -37,40 +37,38 @@
 
 
         <div class="game-board" id="gameBoard"></div>
-           <!--- <div class ="card-flipped">
-                <div class="card-front"><i class="fas fa-spider"></i></div>
-                 <div class="card-back"><img src="" alt=""></i></div> */ -->
-            </div>
-        <div class="controls"></div>
+          
+        <div class="controls">
             <button class="btn" onclick="newGame()">
                 <i class="fas fa-redo"></i> New Game 
             </button>
-    </div>
-    <div class="modal" id="winModal">
-        <div class="modal" id="instructionsModal">
-        <div class="modal-content"></div>
+        </div>
+
+    
+    <!-- Instructions-->
+    <div class="modal" id="instructionsModal">
+        <div class="modal-content">
             <h2><i class="fas fa-info-circle"></i> How to Play: </h2>
             <p>
                 • Match each <strong>cybersecurity term</strong> with its correct meaning.<br>
                 • Click two cards to flip them.<br>
                 • If they match, they stay revealed.<br>
-                • You have <strong>30 moves</strong> and <strong>10 minutes</strong>.<br>
+                • You have <strong>40 moves</strong> and <strong>10 minutes</strong>.<br>
+                • To win you must match <strong>18 pairs</strong>.<br>
                 • Press <strong>New Game</strong> to restart anytime.
             </p>
-            <button class="btn" onclick="closeInstructions()">Start Game</button>
+        <button class="btn" onclick="closeInstructions()">Start Game</button>
         </div>
-</div>
+        </div>
+    </div>
 
-            
-        </div>
-        <div class="modal-content">
+    <div class="modal" id="winModal">
+         <div class="modal-content">
             <h2><i class="fas fa-trophy"></i>  You Won! <i class="fas fa-trophy"></i> </h2>
             <p>Moves: <span id="finalMoves"></span><br>Time: <span id="finalTime"></span></p>
             <button class="btn" onclick="newGame()">Play Again</button>
         </div>
     </div>
-
-
     <script src="game.js"></script>
     
 </body>
