@@ -47,7 +47,7 @@ cardData.forEach(item => {
 });
 
 
-// GAME STATE
+// GAME STATE VARIABLES !!!! track progress, moves, timer, and board behavior.
 
 
 let flippedCards = [];
@@ -62,7 +62,7 @@ let seconds = 0;
 let gameStarted = false;
 
 
-// TIMER
+// TIMER - Starts only on first card flip.
 
 
 function startTimer() {
@@ -71,6 +71,11 @@ function startTimer() {
 
   timerInterval = setInterval(() => {
     seconds++;
+
+    // Update DOM time display - nth-child(2) means 
+    // “pick the second element in this group,” 
+    //  this code finds the time box in the stats and updates the number.
+    //this selector finds the time value in the UI and updates it (example: "0:32")
     document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent =
       `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
