@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- META + HEAD SECTION - Defines page settings, encoding, and document type. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🕷️ Cyber Memory 🕷️</title>
+
+
+    <!-- CSS STYLE SHEETS 
+        External stylesheet for layout + design.
+        Font Awesome library for icons. -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 <body>
+
+    <!-- 
+        MAIN CONTAINER
+        Wraps the entire game.
+        Helps with layout organization. -->
+
     <div class="container">
+
+
+         <!-- HEADER SECTION displays game title and stats -->
         <div class="header">
+
+
+            <!-- AWESOME FONT used for symbols like spider circle bug etc -->
             <h1><i class="fas fa-spider"></i> Cybersecurity Terms <i class="fas fa-spider"></i> </h1>
              <h4><i class="fas fa-bug"></i> Memory Match  <i class="fas fa-bug"></i> </h4>
             
+
+             <!-- GAME STATS -->
+            <!-- 
+                DOM ELEMENTS updated by JavaScript:
+                Moves counter
+                Timer
+                Matches counter
+                
+                This what will be accessed in game.js using document.querySelector / getElementById.
+                - once I start playing.
+            -->
 
             <div class="stats">
                 <div class="stat">
@@ -34,10 +64,19 @@
             </div>
         </div>
 
-
+<!-- GAME BOARD 
+            EMPTY DIV where cards will be inserted dynamically using JavaScript.
+           - main DOM manipulation
+            JS uses getElementById("gameBoard").innerHTML to draw cards.
+        -->
 
         <div class="game-board" id="gameBoard"></div>
           
+        <!-- CONTROL BUTTONS -->
+        <!-- 
+            New Game button triggers the newGame() function in game.js.
+            DOM event handling: onclick attribute.
+        -->
         <div class="controls">
             <button class="btn" onclick="newGame()">
                 <i class="fas fa-redo"></i> New Game 
@@ -45,7 +84,7 @@
         </div>
 
     
-    <!-- Instructions-->
+    <!-- Instructions MODAL using DOM style.display-->
     <div class="modal" id="instructionsModal">
         <div class="modal-content">
             <h2><i class="fas fa-info-circle"></i> How to Play: </h2>
@@ -57,19 +96,36 @@
                 • To win you must match <strong>18 pairs</strong>.<br>
                 • Press <strong>New Game</strong> to restart anytime.
             </p>
+
+
+            <!-- Button closes modal and starts the game -->
         <button class="btn" onclick="closeInstructions()">Start Game</button>
         </div>
         </div>
     </div>
 
+
+<!-- WIN MODAL 
+            Appears when the user matches all pairs.
+            JavaScript writes final moves/time into #finalMoves and #finalTime.
+        -->
     <div class="modal" id="winModal">
          <div class="modal-content">
             <h2><i class="fas fa-trophy"></i>  You Won! <i class="fas fa-trophy"></i> </h2>
-            <p>Moves: <span id="finalMoves"></span><br>Time: <span id="finalTime"></span></p>
+               <!-- DOM elements filled by JS -->
+             <p>Moves: <span id="finalMoves"></span><br>
+                Time: <span id="finalTime"></span></p>
             <button class="btn" onclick="newGame()">Play Again</button>
         </div>
     </div>
     <script src="game.js"></script>
+  <!-- JAVASCRIPT FILE - logic of the game lives in game.js.
+        This is where all DOM interaction happens:
+            - creating cards
+            - flipping cards
+            - updating stats
+            - showing/hiding modals
+            - starting/stopping timer-->
     
 </body>
 </html>
