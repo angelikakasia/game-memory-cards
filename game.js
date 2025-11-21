@@ -271,10 +271,7 @@ function closeInstructions() {
 
 
 // START GAME on page LOAD
-//deck = deck.sort(() => Math.random() - 0.5);
-//renderBoard();
-//showInstructions();
-//document.getElementById("winModal").style.display = "none";
+
 window.onload = function () {
     deck = deck.sort(() => Math.random() - 0.5);
     renderBoard();
