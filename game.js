@@ -196,6 +196,7 @@ function showWinModal() {
     const modal = document.getElementById("winModal");
     modal.style.display = "flex";
     modal.classList.add("showing");
+
 }
 
 
@@ -205,27 +206,28 @@ function showWinModal() {
 
 function newGame() {
     const modal = document.getElementById("winModal");
+
+    // FORCE HIDE THE MODAL COMPLETELY
     modal.style.display = "none";
     modal.classList.remove("showing");
-     modal.classList.remove("show");
+    modal.classList.remove("show");
 
+    // Reset game state
     clearInterval(timerInterval);
+    timerInterval = null;
     seconds = 0;
     gameStarted = false;
-
     moves = 0;
     matchedPairs = 0;
     flippedCards = [];
     lockBoard = false;
 
-    // Reset UI
-    document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
-        `0/${MAX_MOVES}`;
-
+    // Reset stats UI
+    document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent = `0/${MAX_MOVES}`;
     document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent = "0:00";
     document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent = "0/18";
 
-    // Shuffle & render
+    // Rebuild board from scratch 
     deck = deck.sort(() => Math.random() - 0.5);
     renderBoard();
 }
