@@ -1,6 +1,6 @@
-// =======================
+
 // CARD DATA (TERMS + MEANINGS)
-// =======================
+
 
 const cardData = [
   { term: "IAM", meaning: "access control system", color: "#f55585ff" },
@@ -24,9 +24,9 @@ const cardData = [
 ];
 
 
-// =======================
+
 // BUILD 40-CARD DECK
-// =======================
+
 
 let deck = [];
 
@@ -46,9 +46,9 @@ cardData.forEach(item => {
   });
 });
 
-// =======================
+
 // GAME STATE
-// =======================
+
 
 let flippedCards = [];
 let matchedPairs = 0;
@@ -62,9 +62,8 @@ let seconds = 0;
 let gameStarted = false;
 
 
-// =======================
 // TIMER
-// =======================
+
 
 function startTimer() {
   if (gameStarted) return;
@@ -76,19 +75,18 @@ function startTimer() {
       `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
     // Time limit
-    if (seconds > 600) {
-      lockBoard = true;
-      clearInterval(timerInterval);
-      alert("Time's up! You reached the 10-minute limit!");
-    }
-
+if (seconds > 600) {
+    lockBoard = true;
+    clearInterval(timerInterval);
+    showLoseModal("Time’s up!");
+}
   }, 1000);
 }
 
 
-// =======================
+
 // RENDER 6x6 GRID
-// =======================
+
 
 function renderBoard() {
   const board = document.getElementById("gameBoard");
@@ -111,9 +109,9 @@ function renderBoard() {
 }
 
 
-// =======================
+
 // FLIP CARD
-// =======================
+
 
 function flipCard() {
   if (lockBoard) return;
@@ -135,9 +133,9 @@ function flipCard() {
 }
 
 
-// =======================
+
 // CHECK MATCH
-// =======================
+
 
 function checkMatch() {
   lockBoard = true;
@@ -146,12 +144,12 @@ function checkMatch() {
 
   moves++;
 
-  if (moves > MAX_MOVES) {
+ if (moves > MAX_MOVES) {
     lockBoard = true;
     clearInterval(timerInterval);
-    alert("Game Over: You reached maximum move limit!");
+    showLoseModal("You used all 40 moves!");
     return;
-  }
+}
 
 
   document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
@@ -183,53 +181,59 @@ function checkMatch() {
 }
 
 
-// =======================
+
 // SHOW WIN MODAL
-// =======================
+
 
 function showWinModal() {
-  clearInterval(timerInterval);
+    lockBoard = false;
+    clearInterval(timerInterval);
 
-  document.getElementById("finalMoves").textContent = moves;
-  document.getElementById("finalTime").textContent =
+    document.getElementById("finalMoves").textContent = moves;
+    document.getElementById("finalTime").textContent =
     `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
-  const modal = document.getElementById("winModal");
-  modal.style.display = "flex";
-  modal.classList.add("showing");
+    const modal = document.getElementById("winModal");
+    modal.style.display = "flex";
+    modal.classList.add("showing");
 }
 
 
-// =======================
+
 // NEW GAME RESET
-// =======================
+
 
 function newGame() {
-  clearInterval(timerInterval);
-  seconds = 0;
-  gameStarted = false;
+    const modal = document.getElementById("winModal");
+    modal.style.display = "none";
+    modal.classList.remove("showing");
+     modal.classList.remove("show");
 
-  moves = 0;
-  matchedPairs = 0;
-  flippedCards = [];
-  lockBoard = false;
+    clearInterval(timerInterval);
+    seconds = 0;
+    gameStarted = false;
 
-  // Reset UI
-  document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
-    `0/${MAX_MOVES}`;
+    moves = 0;
+    matchedPairs = 0;
+    flippedCards = [];
+    lockBoard = false;
 
-  document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent = "0:00";
-  document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent = "0/18";
+    // Reset UI
+    document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
+        `0/${MAX_MOVES}`;
 
-  // Shuffle & render
-  deck = deck.sort(() => Math.random() - 0.5);
-  renderBoard();
+    document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent = "0:00";
+    document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent = "0/18";
+
+    // Shuffle & render
+    deck = deck.sort(() => Math.random() - 0.5);
+    renderBoard();
 }
 
 
-// =======================
+
 // SHOW INSTRUCTIONS ON LOAD
-// =======================
+
 
 function showInstructions() {
   document.getElementById("instructionsModal").classList.add("show");
@@ -240,9 +244,8 @@ function closeInstructions() {
 }
 
 
-// =======================
 // START GAME
-// =======================
+
 
 deck = deck.sort(() => Math.random() - 0.5);
 renderBoard();
