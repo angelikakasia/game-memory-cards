@@ -90,12 +90,12 @@ if (seconds > 600) {
 
 
 
-// RENDER 6x6 GRID
+// RENDER 6×6 GRID — creates the cards in the DOM
 
 
 function renderBoard() {
   const board = document.getElementById("gameBoard");
-  board.innerHTML = "";
+  board.innerHTML = ""; // clears previous game
 
   deck.forEach((card, index) => {
     const div = document.createElement("div");
@@ -119,7 +119,7 @@ function renderBoard() {
 
 
 function flipCard() {
-  if (lockBoard) return;
+  if (lockBoard) return; // prevents flipping during animation
 
   startTimer();
 
@@ -141,14 +141,13 @@ function flipCard() {
 
 // CHECK MATCH
 
-
 function checkMatch() {
   lockBoard = true;
-
   const [first, second] = flippedCards;
-
   moves++;
 
+
+ // Lose if moves exceed limit
  if (moves > MAX_MOVES) {
     lockBoard = true;
     clearInterval(timerInterval);
@@ -156,25 +155,31 @@ function checkMatch() {
     return;
 }
 
-
+  // Update DOM move counter
   document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent =
     `${moves}/${MAX_MOVES}`;
 
+
+    // MATCH !!
   if (first.card.id === second.card.id) {
     first.element.classList.add("matched");
     second.element.classList.add("matched");
-
     matchedPairs++;
+
+     // Update DOM match counter
     document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent =
       `${matchedPairs}/18`;
 
     flippedCards = [];
     lockBoard = false;
 
+     // WIN CONDITION
     if (matchedPairs === 18) {
       setTimeout(showWinModal, 600);
     }
   } else {
+
+     // NO MATCH → flip back
     setTimeout(() => {
       first.element.classList.remove("flipped");
       second.element.classList.remove("flipped");
@@ -188,12 +193,13 @@ function checkMatch() {
 
 
 // SHOW WIN MODAL
-
+//  results and shows popup with PLAY AGAIN button.
 
 function showWinModal() {
     lockBoard = false;
     clearInterval(timerInterval);
 
+       // Insert results into win modal
     document.getElementById("finalMoves").textContent = moves;
     document.getElementById("finalTime").textContent =
     `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
@@ -208,11 +214,10 @@ function showWinModal() {
 
 // NEW GAME RESET
 
-
 function newGame() {
     const modal = document.getElementById("winModal");
 
-    // FORCE HIDE THE MODAL COMPLETELY
+    // Hide win modal so PLAY AGAIN resets properly
     modal.style.display = "none";
     modal.classList.remove("showing");
     modal.classList.remove("show");
@@ -227,12 +232,12 @@ function newGame() {
     flippedCards = [];
     lockBoard = false;
 
-    // Reset stats UI
+    // Reset DOM STATS
     document.querySelector(".stats .stat:nth-child(1) .stat-label:nth-child(2)").textContent = `0/${MAX_MOVES}`;
     document.querySelector(".stats .stat:nth-child(2) .stat-label:nth-child(2)").textContent = "0:00";
     document.querySelector(".stats .stat:nth-child(3) .stat-label:nth-child(2)").textContent = "0/18";
 
-    // Rebuild board from scratch 
+    // shuffles deck builds game board
     deck = deck.sort(() => Math.random() - 0.5);
     renderBoard();
 }
@@ -241,19 +246,15 @@ function newGame() {
 
 // SHOW INSTRUCTIONS ON LOAD
 
-
 function showInstructions() {
   document.getElementById("instructionsModal").classList.add("show");
 }
-
 function closeInstructions() {
   document.getElementById("instructionsModal").classList.remove("show");
 }
 
 
-// START GAME
-
-
+// START GAME on page LOAD
 deck = deck.sort(() => Math.random() - 0.5);
 renderBoard();
 showInstructions();
