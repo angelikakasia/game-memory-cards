@@ -234,6 +234,10 @@ function newGame() {
     modal.classList.remove("showing");
     modal.classList.remove("show");
 
+    // hiding lose modal
+    document.getElementById("loseModal").style.display = "none";
+
+
     // Reset game state
     clearInterval(timerInterval);
     timerInterval = null;
