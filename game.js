@@ -210,6 +210,18 @@ function showWinModal() {
 
 }
 
+// SHOW LOSE MODAL
+function showLoseModal(message) {
+    lockBoard = true;
+    clearInterval(timerInterval);
+
+    // Insert reason into lose modal
+    document.getElementById("loseMessage").textContent = message;
+
+    const modal = document.getElementById("loseModal");
+    modal.style.display = "flex";
+    modal.classList.add("showing");
+}
 
 
 // NEW GAME RESET
